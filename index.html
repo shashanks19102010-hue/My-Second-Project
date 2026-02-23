@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shashank | Official Website</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:url('background.jpg') no-repeat center center/cover;
+    min-height:100vh;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Overlay */
+.overlay{
+    background:rgba(0,0,0,0.7);
+    min-height:100vh;
+}
+
+/* Navbar */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 60px;
+    position:fixed;
+    width:100%;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+nav h1{
+    font-size:24px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+
+nav ul li{
+    cursor:pointer;
+    transition:0.3s;
+}
+
+nav ul li:hover{
+    color:#00ffd5;
+}
+
+/* Hero */
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    animation:fadeIn 2s ease-in-out;
+}
+
+.hero h2{
+    font-size:55px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:22px;
+    opacity:0.9;
+}
+
+/* About Section */
+.about{
+    max-width:1000px;
+    margin:100px auto;
+    background:rgba(255,255,255,0.1);
+    padding:50px;
+    border-radius:20px;
+    backdrop-filter:blur(12px);
+    line-height:1.9;
+    font-size:18px;
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+/* Show animation */
+.about.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Phone section */
+.phone-section{
+    text-align:center;
+    padding:100px 20px;
+    font-size:30px;
+    font-weight:600;
+    opacity:0;
+    transform:scale(0.8);
+    transition:1s ease;
+}
+
+.phone-section.show{
+    opacity:1;
+    transform:scale(1);
+    color:#00ffd5;
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    padding:20px;
+    background:rgba(0,0,0,0.9);
+    font-size:14px;
+}
+
+/* Animations */
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<nav>
+    <h1>Shashank</h1>
+    <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <h2>Welcome To My Official Website</h2>
+    <p>Student | Dreamer | Future Achiever</p>
+</section>
+
+<section class="about" id="about">
+<p>
+My name is Shashank, and I am a student of Class 9 at Sacred Heart Convent School, Chandausi. I live in the beautiful town of Chandausi. I am proud of my school, my family, and my hometown.
+</p>
+<br>
+<p>
+As a Class 9 student, I understand that this stage is important for my future. I am a hardworking and disciplined learner who believes in regular study and self-improvement. I enjoy science, technology, and discovering how things work.
+</p>
+<br>
+<p>
+My school teaches me not only academic subjects but also moral values and responsibility. My family supports and motivates me to achieve success through honesty and dedication.
+</p>
+<br>
+<p>
+I am continuously learning and growing every day. This website represents my journey, my dreams, and my goals for a bright future.
+</p>
+</section>
+
+<section class="phone-section" id="phone">
+📞 Contact Me: +91 9411597392
+</section>
+
+<footer>
+© 2026 Shashank | Sacred Heart Convent School, Chandausi
+</footer>
+
+</div>
+
+<script>
+// Scroll Animation
+window.addEventListener('scroll', function(){
+    let about = document.getElementById('about');
+    let phone = document.getElementById('phone');
+
+    let aboutPosition = about.getBoundingClientRect().top;
+    let phonePosition = phone.getBoundingClientRect().top;
+
+    let screenPosition = window.innerHeight / 1.2;
+
+    if(aboutPosition < screenPosition){
+        about.classList.add('show');
+    }
+
+    if(phonePosition < screenPosition){
+        phone.classList.add('show');
+    }
+});
+</script>
+
+</body>
+  </html>
