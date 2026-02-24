@@ -3,47 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shashank | God Level Portfolio</title>
+<title>Shashank | Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
 
 body{
 background:#ffffff;
-color:#222;
+color:#111;
 overflow-x:hidden;
 }
 
-/* Particles Background */
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
-}
+/* NAVBAR */
 
-/* Navbar */
 nav{
 position:fixed;
-top:0;
 width:100%;
+padding:20px 10%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 60px;
-background:rgba(255,255,255,0.8);
-backdrop-filter:blur(12px);
+background:rgba(255,255,255,0.9);
+backdrop-filter:blur(10px);
 box-shadow:0 5px 20px rgba(0,0,0,0.05);
 z-index:1000;
 }
 
 nav h1{
+font-size:24px;
 font-weight:800;
-color:#00bfa6;
 }
 
 nav ul{
@@ -54,151 +51,136 @@ list-style:none;
 
 nav ul li a{
 text-decoration:none;
-color:#222;
+color:#111;
 font-weight:500;
-position:relative;
-}
-
-nav ul li a::after{
-content:"";
-position:absolute;
-width:0;
-height:2px;
-background:#00bfa6;
-bottom:-5px;
-left:0;
 transition:0.3s;
 }
 
-nav ul li a:hover::after{
-width:100%;
+nav ul li a:hover{
+color:#6c63ff;
 }
 
-/* Hero Section */
+/* HERO */
+
 .hero{
+position:relative;
 height:100vh;
 display:flex;
 flex-direction:column;
-justify-content:center;
+justify-content:flex-end;
 align-items:center;
 text-align:center;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:70%;
+background:url("20250913_155828.heic") center/cover no-repeat;
+animation:zoom 15s infinite alternate ease-in-out;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:70%;
+background:linear-gradient(to bottom, rgba(255,255,255,0), #ffffff);
+}
+
+@keyframes zoom{
+0%{transform:scale(1);}
+100%{transform:scale(1.1);}
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+padding-bottom:100px;
 }
 
 .hero h2{
-font-size:60px;
+font-size:55px;
 font-weight:800;
+margin-bottom:10px;
 }
 
 .hero span{
-color:#00bfa6;
+color:#6c63ff;
 }
 
 .typing{
-margin-top:15px;
-font-size:24px;
-color:#00bfa6;
+font-size:22px;
+font-weight:500;
+color:#555;
 height:30px;
+margin-bottom:20px;
 }
 
 .btn{
-margin-top:30px;
-padding:12px 40px;
-background:#00bfa6;
-color:white;
+padding:12px 30px;
 border:none;
+background:#6c63ff;
+color:#fff;
 border-radius:30px;
-font-weight:600;
 cursor:pointer;
-transition:0.4s;
-box-shadow:0 10px 25px rgba(0,191,166,0.4);
+font-weight:600;
+transition:0.3s;
 }
 
 .btn:hover{
-transform:translateY(-5px) scale(1.05);
-box-shadow:0 15px 35px rgba(0,191,166,0.6);
+transform:scale(1.1);
 }
 
-/* Sections */
-.section{
-padding:120px 20px;
-max-width:1100px;
-margin:auto;
+/* SECTION */
+
+section{
+padding:100px 10%;
+}
+
+.section-title{
+font-size:40px;
+font-weight:800;
+margin-bottom:40px;
 text-align:center;
 }
 
-.section h2{
-font-size:40px;
-margin-bottom:40px;
-color:#00bfa6;
-}
-
-/* 3D Cards */
-.card-container{
-display:flex;
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
-flex-wrap:wrap;
-justify-content:center;
 }
 
 .card{
-background:white;
-padding:40px;
+padding:30px;
+background:#fff;
 border-radius:20px;
-width:300px;
-box-shadow:0 15px 35px rgba(0,0,0,0.1);
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
 transition:0.4s;
 }
 
 .card:hover{
-box-shadow:0 20px 45px rgba(0,0,0,0.15);
+transform:translateY(-10px);
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
 
-.card h3{
-margin-bottom:15px;
-}
+/* FOOTER */
 
-/* Contact */
-.contact-box{
-font-size:22px;
-font-weight:600;
-color:#00bfa6;
-margin-top:30px;
-}
-
-/* Footer */
 footer{
+padding:30px;
 text-align:center;
-padding:25px;
-background:#f8f8f8;
-margin-top:80px;
+background:#f5f5f5;
 }
 
-/* WhatsApp */
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-padding:15px 18px;
-border-radius:50%;
-font-size:22px;
-text-decoration:none;
-box-shadow:0 0 15px rgba(0,0,0,0.3);
-}
-
-/* Responsive */
-@media(max-width:768px){
-.hero h2{font-size:38px;}
-nav{padding:20px;}
-.card-container{flex-direction:column;}
-}
 </style>
 </head>
-
 <body>
-
-<div id="particles-js"></div>
 
 <nav>
 <h1>Shashank</h1>
@@ -206,82 +188,71 @@ nav{padding:20px;}
 <li><a href="#home">Home</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#skills">Skills</a></li>
-<li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
 
 <section class="hero" id="home">
-<h2>Hello, I'm <span>Shashank</span></h2>
+<div class="hero-content">
+<h2>Hi, I'm <span>Shashank</span></h2>
 <div class="typing" id="typing"></div>
-<a href="#about"><button class="btn">Explore More</button></a>
+<a href="#about"><button class="btn">Explore</button></a>
+</div>
 </section>
 
-<section class="section" id="about">
-<h2>About Me</h2>
-<p>
-I am a Class 9 student of Sacred Heart Convent School, Chandausi.
-I live in Chandausi and I am passionate about technology, coding and creativity.
-I believe in discipline, honesty and continuous learning.
-My goal is to become successful and make my family proud.
-</p>
-</section>
-
-<section class="section" id="skills">
-<h2>My Skills</h2>
-<div class="card-container">
-<div class="card" data-tilt>
-<h3>Web Development</h3>
-<p>HTML, CSS, JavaScript modern responsive websites.</p>
-</div>
-
-<div class="card" data-tilt>
-<h3>Creative Thinking</h3>
-<p>Advanced UI design and animation concepts.</p>
-</div>
-
-<div class="card" data-tilt>
-<h3>Future Vision</h3>
-<p>Focused on growth, learning and success mindset.</p>
+<section id="about">
+<h2 class="section-title">About Me</h2>
+<div class="cards">
+<div class="card">
+<p>I am a passionate student learning coding and building powerful websites. I love creating modern and animated designs.</p>
 </div>
 </div>
 </section>
 
-<section class="section" id="contact">
-<h2>Contact Me</h2>
-<div class="contact-box">
-📞 +91 9411597392
+<section id="skills">
+<h2 class="section-title">My Skills</h2>
+<div class="cards">
+<div class="card">HTML</div>
+<div class="card">CSS</div>
+<div class="card">JavaScript</div>
+<div class="card">Creative Design</div>
 </div>
 </section>
 
 <footer>
-© 2026 Shashank | God Level Portfolio
+© 2026 Shashank | All Rights Reserved
 </footer>
 
-<a href="https://wa.me/919411597392" class="whatsapp" target="_blank">💬</a>
-
 <script>
-// Typing Effect
-const texts = ["Student", "Tech Enthusiast", "Future Achiever"];
-let i=0,j=0,current="",isDeleting=false;
+
+const text = ["Web Developer","Creative Designer","Future Tech Expert"];
+let i=0;
+let j=0;
+let current="";
+let isDeleting=false;
+
 function type(){
-current = texts[i];
+current = text[i];
+document.getElementById("typing").textContent = current.substring(0,j);
+
+if(!isDeleting && j < current.length){
+j++;
+setTimeout(type,100);
+}
+else if(isDeleting && j>0){
+j--;
+setTimeout(type,50);
+}
+else{
+isDeleting=!isDeleting;
 if(!isDeleting){
-document.getElementById("typing").textContent = current.slice(0,++j);
-if(j==current.length){isDeleting=true;setTimeout(type,1000);return;}
-}else{
-document.getElementById("typing").textContent = current.slice(0,--j);
-if(j==0){isDeleting=false;i=(i+1)%texts.length;}
+i=(i+1)%text.length;
 }
-setTimeout(type,isDeleting?50:100);
+setTimeout(type,1000);
 }
+}
+
 type();
 
-// Particles
-particlesJS("particles-js",{
-particles:{number:{value:80},size:{value:3},
-move:{speed:2},line_linked:{enable:true,color:"#00bfa6"},
-color:{value:"#00bfa6"}}
-});
 </script>
 
 </body>
