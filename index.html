@@ -3,207 +3,286 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shashank | Official Website</title>
+<title>Shashank | God Level Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
 
 body{
-    background:url('background.jpg') no-repeat center center/cover;
-    min-height:100vh;
-    color:white;
-    overflow-x:hidden;
+background:#ffffff;
+color:#222;
+overflow-x:hidden;
 }
 
-/* Overlay */
-.overlay{
-    background:rgba(0,0,0,0.7);
-    min-height:100vh;
+/* Particles Background */
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
 }
 
 /* Navbar */
 nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 60px;
-    position:fixed;
-    width:100%;
-    background:rgba(0,0,0,0.8);
-    backdrop-filter:blur(10px);
-    z-index:1000;
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:rgba(255,255,255,0.8);
+backdrop-filter:blur(12px);
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+z-index:1000;
 }
 
 nav h1{
-    font-size:24px;
-    font-weight:700;
-    letter-spacing:2px;
+font-weight:800;
+color:#00bfa6;
 }
 
 nav ul{
-    list-style:none;
-    display:flex;
-    gap:30px;
+display:flex;
+gap:30px;
+list-style:none;
 }
 
-nav ul li{
-    cursor:pointer;
-    transition:0.3s;
+nav ul li a{
+text-decoration:none;
+color:#222;
+font-weight:500;
+position:relative;
 }
 
-nav ul li:hover{
-    color:#00ffd5;
+nav ul li a::after{
+content:"";
+position:absolute;
+width:0;
+height:2px;
+background:#00bfa6;
+bottom:-5px;
+left:0;
+transition:0.3s;
 }
 
-/* Hero */
+nav ul li a:hover::after{
+width:100%;
+}
+
+/* Hero Section */
 .hero{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    animation:fadeIn 2s ease-in-out;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
 }
 
 .hero h2{
-    font-size:55px;
-    font-weight:700;
-    margin-bottom:15px;
+font-size:60px;
+font-weight:800;
 }
 
-.hero p{
-    font-size:22px;
-    opacity:0.9;
+.hero span{
+color:#00bfa6;
 }
 
-/* About Section */
-.about{
-    max-width:1000px;
-    margin:100px auto;
-    background:rgba(255,255,255,0.1);
-    padding:50px;
-    border-radius:20px;
-    backdrop-filter:blur(12px);
-    line-height:1.9;
-    font-size:18px;
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
+.typing{
+margin-top:15px;
+font-size:24px;
+color:#00bfa6;
+height:30px;
 }
 
-/* Show animation */
-.about.show{
-    opacity:1;
-    transform:translateY(0);
+.btn{
+margin-top:30px;
+padding:12px 40px;
+background:#00bfa6;
+color:white;
+border:none;
+border-radius:30px;
+font-weight:600;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 10px 25px rgba(0,191,166,0.4);
 }
 
-/* Phone section */
-.phone-section{
-    text-align:center;
-    padding:100px 20px;
-    font-size:30px;
-    font-weight:600;
-    opacity:0;
-    transform:scale(0.8);
-    transition:1s ease;
+.btn:hover{
+transform:translateY(-5px) scale(1.05);
+box-shadow:0 15px 35px rgba(0,191,166,0.6);
 }
 
-.phone-section.show{
-    opacity:1;
-    transform:scale(1);
-    color:#00ffd5;
+/* Sections */
+.section{
+padding:120px 20px;
+max-width:1100px;
+margin:auto;
+text-align:center;
+}
+
+.section h2{
+font-size:40px;
+margin-bottom:40px;
+color:#00bfa6;
+}
+
+/* 3D Cards */
+.card-container{
+display:flex;
+gap:30px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:20px;
+width:300px;
+box-shadow:0 15px 35px rgba(0,0,0,0.1);
+transition:0.4s;
+}
+
+.card:hover{
+box-shadow:0 20px 45px rgba(0,0,0,0.15);
+}
+
+.card h3{
+margin-bottom:15px;
+}
+
+/* Contact */
+.contact-box{
+font-size:22px;
+font-weight:600;
+color:#00bfa6;
+margin-top:30px;
 }
 
 /* Footer */
 footer{
-    text-align:center;
-    padding:20px;
-    background:rgba(0,0,0,0.9);
-    font-size:14px;
+text-align:center;
+padding:25px;
+background:#f8f8f8;
+margin-top:80px;
 }
 
-/* Animations */
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
+/* WhatsApp */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px 18px;
+border-radius:50%;
+font-size:22px;
+text-decoration:none;
+box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media(max-width:768px){
+.hero h2{font-size:38px;}
+nav{padding:20px;}
+.card-container{flex-direction:column;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="overlay">
+<div id="particles-js"></div>
 
 <nav>
-    <h1>Shashank</h1>
-    <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-    </ul>
+<h1>Shashank</h1>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 </nav>
 
-<section class="hero">
-    <h2>Welcome To My Official Website</h2>
-    <p>Student | Dreamer | Future Achiever</p>
+<section class="hero" id="home">
+<h2>Hello, I'm <span>Shashank</span></h2>
+<div class="typing" id="typing"></div>
+<a href="#about"><button class="btn">Explore More</button></a>
 </section>
 
-<section class="about" id="about">
+<section class="section" id="about">
+<h2>About Me</h2>
 <p>
-My name is Shashank, and I am a student of Class 9 at Sacred Heart Convent School, Chandausi. I live in the beautiful town of Chandausi. I am proud of my school, my family, and my hometown.
-</p>
-<br>
-<p>
-As a Class 9 student, I understand that this stage is important for my future. I am a hardworking and disciplined learner who believes in regular study and self-improvement. I enjoy science, technology, and discovering how things work.
-</p>
-<br>
-<p>
-My school teaches me not only academic subjects but also moral values and responsibility. My family supports and motivates me to achieve success through honesty and dedication.
-</p>
-<br>
-<p>
-I am continuously learning and growing every day. This website represents my journey, my dreams, and my goals for a bright future.
+I am a Class 9 student of Sacred Heart Convent School, Chandausi.
+I live in Chandausi and I am passionate about technology, coding and creativity.
+I believe in discipline, honesty and continuous learning.
+My goal is to become successful and make my family proud.
 </p>
 </section>
 
-<section class="phone-section" id="phone">
-📞 Contact Me: +91 9411597392
+<section class="section" id="skills">
+<h2>My Skills</h2>
+<div class="card-container">
+<div class="card" data-tilt>
+<h3>Web Development</h3>
+<p>HTML, CSS, JavaScript modern responsive websites.</p>
+</div>
+
+<div class="card" data-tilt>
+<h3>Creative Thinking</h3>
+<p>Advanced UI design and animation concepts.</p>
+</div>
+
+<div class="card" data-tilt>
+<h3>Future Vision</h3>
+<p>Focused on growth, learning and success mindset.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="contact">
+<h2>Contact Me</h2>
+<div class="contact-box">
+📞 +91 9411597392
+</div>
 </section>
 
 <footer>
-© 2026 Shashank | Sacred Heart Convent School, Chandausi
+© 2026 Shashank | God Level Portfolio
 </footer>
 
-</div>
+<a href="https://wa.me/919411597392" class="whatsapp" target="_blank">💬</a>
 
 <script>
-// Scroll Animation
-window.addEventListener('scroll', function(){
-    let about = document.getElementById('about');
-    let phone = document.getElementById('phone');
+// Typing Effect
+const texts = ["Student", "Tech Enthusiast", "Future Achiever"];
+let i=0,j=0,current="",isDeleting=false;
+function type(){
+current = texts[i];
+if(!isDeleting){
+document.getElementById("typing").textContent = current.slice(0,++j);
+if(j==current.length){isDeleting=true;setTimeout(type,1000);return;}
+}else{
+document.getElementById("typing").textContent = current.slice(0,--j);
+if(j==0){isDeleting=false;i=(i+1)%texts.length;}
+}
+setTimeout(type,isDeleting?50:100);
+}
+type();
 
-    let aboutPosition = about.getBoundingClientRect().top;
-    let phonePosition = phone.getBoundingClientRect().top;
-
-    let screenPosition = window.innerHeight / 1.2;
-
-    if(aboutPosition < screenPosition){
-        about.classList.add('show');
-    }
-
-    if(phonePosition < screenPosition){
-        phone.classList.add('show');
-    }
+// Particles
+particlesJS("particles-js",{
+particles:{number:{value:80},size:{value:3},
+move:{speed:2},line_linked:{enable:true,color:"#00bfa6"},
+color:{value:"#00bfa6"}}
 });
 </script>
 
 </body>
-  </html>
+</html>
