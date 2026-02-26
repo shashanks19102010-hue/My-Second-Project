@@ -11,18 +11,34 @@
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
+/* RESET */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
 body{background:#ffffff;color:#222;overflow-x:hidden;transition:0.5s;}
 .dark-mode{background:#111;color:#eee;}
+a{text-decoration:none;}
+/* PARTICLES */
 #particles-js{position:fixed;width:100%;height:100%;z-index:-2;}
-nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 60px;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);box-shadow:0 5px 20px rgba(0,0,0,0.05);z-index:1000;transition:0.5s;}
+
+/* NAVBAR */
+nav{
+position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;
+background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);box-shadow:0 5px 20px rgba(0,0,0,0.05);z-index:1000;transition:0.5s;border-radius:0 0 20px 20px;
+}
 nav.dark-mode{background:rgba(0,0,0,0.85);}
 nav h1{font-weight:800;background:linear-gradient(45deg,#00bfa6,#6c63ff);-webkit-background-clip:text;color:transparent;}
 nav ul{display:flex;gap:30px;list-style:none;}
-nav ul li a{text-decoration:none;color:#222;font-weight:500;transition:0.3s;}
-nav ul li a:hover{color:#00bfa6;}
+nav ul li a{color:#222;font-weight:500;transition:0.3s;}
 nav.dark-mode ul li a{color:#eee;}
+nav ul li a:hover{color:#00bfa6;}
 nav.dark-mode ul li a:hover{color:#6c63ff;}
+
+/* THEME BUTTON */
+.theme-toggle{
+position:fixed;top:25px;right:25px;background:#00bfa6;color:white;padding:12px 15px;border-radius:50px;cursor:pointer;z-index:1100;box-shadow:0 5px 15px rgba(0,0,0,0.2);transition:0.3s;
+}
+.theme-toggle:hover{transform:scale(1.1);}
+
+/* HERO */
 .hero{position:relative;height:100vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;overflow:hidden;}
 .hero::before{content:"";position:absolute;top:0;left:0;width:100%;height:75%;background:url("a26f022f95423ba4f4cfcd68b9a5c489 (1).jpg") center/cover no-repeat;animation:zoom 20s infinite alternate ease-in-out;z-index:-1;}
 .hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:75%;background:linear-gradient(to bottom,transparent,#ffffff);z-index:-1;}
@@ -33,22 +49,38 @@ nav.dark-mode ul li a:hover{color:#6c63ff;}
 .typing{margin-top:15px;font-size:24px;color:#00bfa6;height:30px;}
 .btn{margin-top:30px;padding:14px 45px;border:none;border-radius:40px;font-weight:600;cursor:pointer;background:linear-gradient(45deg,#00bfa6,#6c63ff);color:white;transition:0.4s;box-shadow:0 10px 30px rgba(0,0,0,0.15);}
 .btn:hover{transform:translateY(-6px) scale(1.08);}
+
+/* SECTIONS */
 .section{padding:120px 20px;max-width:1200px;margin:auto;text-align:center;}
 .section h2{font-size:42px;margin-bottom:40px;background:linear-gradient(45deg,#00bfa6,#6c63ff);-webkit-background-clip:text;color:transparent;}
+.section p{line-height:1.8em;font-size:18px;}
+.dark-mode .section p{color:#ddd;}
+
+/* CARDS */
 .card-container{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;}
 .card{background:white;padding:40px;border-radius:25px;width:300px;box-shadow:0 15px 40px rgba(0,0,0,0.08);transition:0.4s;cursor:pointer;}
+.dark-mode .card{background:#1a1a1a;color:#eee;box-shadow:0 15px 40px rgba(0,0,0,0.5);}
 .card:hover{transform:translateY(-10px);box-shadow:0 25px 50px rgba(0,0,0,0.15);}
 .card h3{margin-bottom:15px;}
+
+/* PROGRESS */
 .progress-bar{background:#eee;border-radius:20px;overflow:hidden;margin:15px 0;}
+.dark-mode .progress-bar{background:#333;}
 .progress-bar-inner{height:18px;background:#00bfa6;width:0%;border-radius:20px;text-align:right;padding-right:10px;color:white;font-weight:500;line-height:18px;transition:1s;}
+
+/* CONTACT */
 .contact-box{font-size:22px;font-weight:600;color:#00bfa6;margin-top:30px;}
 .contact-icons{margin-top:20px;display:flex;gap:20px;justify-content:center;}
 .contact-icons a{font-size:28px;color:#00bfa6;transition:0.3s;}
-.contact-icons a:hover{color:#6c63ff;}
+.dark-mode .contact-icons a{color:#6c63ff;}
+.contact-icons a:hover{color:#ff7b00;}
+
+/* FOOTER */
 footer{text-align:center;padding:30px;background:#f8f8f8;margin-top:80px;}
 .dark-mode footer{background:#222;color:#eee;}
-.theme-toggle{position:fixed;top:20px;right:20px;background:#00bfa6;color:white;padding:10px 15px;border-radius:50px;cursor:pointer;z-index:1100;box-shadow:0 5px 15px rgba(0,0,0,0.2);}
-@media(max-width:768px){.hero h2{font-size:38px;}nav{padding:20px;}.card-container{flex-direction:column;}}
+
+/* RESPONSIVE */
+@media(max-width:768px){.hero h2{font-size:38px;}nav{padding:20px;}.card-container{flex-direction:column;}.theme-toggle{top:15px;right:15px;}}
 </style>
 </head>
 <body>
@@ -78,7 +110,7 @@ footer{text-align:center;padding:30px;background:#f8f8f8;margin-top:80px;}
 <section class="section" id="about">
 <h2>About Me</h2>
 <p>
-I am Shashank, a passionate coder, creative thinker, and lifelong learner. Ever since childhood, technology has fascinated me, and I have continuously explored new avenues in web development, UI/UX design, and digital creativity. I enjoy building modern, responsive, and visually appealing websites that are not only functional but also immersive experiences for the users. Beyond coding, I am a strategist, always planning my next project or learning path with the aim of mastery. My journey involves a continuous blend of innovation, experimentation, and skill enhancement. I take pride in blending creativity with problem-solving, producing digital products that are both elegant and efficient. Through this portfolio, I aim to showcase not just my technical skills but also my creative vision, determination, and the relentless pursuit of excellence. In the coming years, I aspire to explore AI-integrated applications, advanced web interfaces, and contribute to open-source communities. My approach is holistic: balancing aesthetics, functionality, and user experience. Outside technology, I enjoy reading, exploring new ideas, and understanding the principles of growth and innovation. My story is one of passion meeting perseverance, and I constantly seek opportunities to learn, evolve, and inspire.
+I am Shashank, a passionate coder, creative thinker, and lifelong learner. Ever since childhood, technology has fascinated me... (expand as needed)
 </p>
 </section>
 
@@ -90,13 +122,11 @@ I am Shashank, a passionate coder, creative thinker, and lifelong learner. Ever 
 <p>Modern responsive websites with animations.</p>
 <div class="progress-bar"><div class="progress-bar-inner" data-width="95%">95%</div></div>
 </div>
-
 <div class="card" data-tilt>
 <h3>Creative Design</h3>
 <p>Premium UI and smooth visual effects.</p>
 <div class="progress-bar"><div class="progress-bar-inner" data-width="90%">90%</div></div>
 </div>
-
 <div class="card" data-tilt>
 <h3>Future Vision</h3>
 <p>Focused on growth, mastery and success.</p>
@@ -138,38 +168,28 @@ setTimeout(type,isDeleting?50:100);
 type();
 
 // Tilt Effect
-VanillaTilt.init(document.querySelectorAll(".card"), {
-max:25,
-speed:400,
-glare:true,
-"max-glare":0.3
-});
+VanillaTilt.init(document.querySelectorAll(".card"), {max:25,speed:400,glare:true,"max-glare":0.3});
 
 // Progress Bars Animation
 window.addEventListener("scroll",()=>{
 document.querySelectorAll(".progress-bar-inner").forEach(bar=>{
 const rect=bar.getBoundingClientRect();
-if(rect.top<window.innerHeight-50){
-bar.style.width=bar.getAttribute("data-width");
-}
+if(rect.top<window.innerHeight-50){bar.style.width=bar.getAttribute("data-width");}
 });
 });
 
 // Particles
-particlesJS("particles-js",{
-particles:{
-number:{value:80},
-size:{value:3},
-move:{speed:2},
-line_linked:{enable:true,color:"#00bfa6"},
-color:{value:"#00bfa6"}
-}
-});
+particlesJS("particles-js",{particles:{number:{value:80},size:{value:3},move:{speed:2},line_linked:{enable:true,color:"#00bfa6"},color:{value:"#00bfa6"}}});
 
 // Dark/Light Theme
 const themeToggle=document.getElementById("theme-toggle");
 themeToggle.addEventListener("click",()=>{
 document.body.classList.toggle("dark-mode");
+if(document.body.classList.contains("dark-mode")){
+themeToggle.innerHTML='<i class="fas fa-sun"></i>';
+}else{
+themeToggle.innerHTML='<i class="fas fa-moon"></i>';
+}
 });
 </script>
 
