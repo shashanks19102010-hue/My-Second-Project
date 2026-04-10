@@ -7,78 +7,469 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <style>
-:root{--bg:#ffffff;--text:#222;--card:#ffffff;--nav:rgba(255,255,255,0.9);--grad1:#00bfa6;--grad2:#6c63ff;}
+:root{
+  --bg:#ffffff;
+  --text:#1f1f1f;
+  --card:#ffffff;
+  --nav:rgba(255,255,255,0.92);
+  --muted:#6d7280;
+  --line:#eef0f4;
+  --grad1:#00bfa6;
+  --grad2:#6c63ff;
+  --grad3:#ff6aa2;
+}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);overflow-x:hidden;transition:.35s}
-#particles-js{position:fixed;inset:0;z-index:-1}
-nav{position:fixed;top:0;left:0;width:100%;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:var(--nav);backdrop-filter:blur(10px);z-index:1000;box-shadow:0 5px 20px rgba(0,0,0,.08);border-radius:0 0 25px 25px}
-.logo{font-size:32px;font-weight:800;background:linear-gradient(45deg,var(--grad1),var(--grad2));-webkit-background-clip:text;color:transparent}
-.nav-links{display:flex;gap:18px;align-items:center}.nav-links a{text-decoration:none;color:var(--text);font-weight:600;font-size:16px}
-.theme-toggle{width:52px;height:52px;display:flex;justify-content:center;align-items:center;border-radius:50%;background:linear-gradient(45deg,var(--grad1),var(--grad2));color:#fff;font-size:20px;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.15)}
-.hero{padding-top:110px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-inline:20px}
-.hero-img{width:220px;height:220px;border-radius:50%;object-fit:cover;box-shadow:0 15px 35px rgba(0,0,0,.2);margin-bottom:25px;animation:float 3s ease-in-out infinite}
+body.dark{--bg:#0f1115;--text:#f5f7fb;--card:#171a22;--nav:rgba(15,17,21,0.92);--muted:#a8b0c2;--line:#232734}
+#particles-js{position:fixed;inset:0;z-index:-1;opacity:.9}
+nav{position:fixed;top:0;left:0;width:100%;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:var(--nav);backdrop-filter:blur(12px);z-index:1000;box-shadow:0 8px 24px rgba(0,0,0,.08);border-radius:0 0 26px 26px}
+.logo{font-size:32px;font-weight:800;background:linear-gradient(45deg,var(--grad1),var(--grad2));-webkit-background-clip:text;color:transparent;letter-spacing:-.4px}
+.nav-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.nav-links a{text-decoration:none;color:var(--text);font-weight:600;font-size:16px;opacity:.92}
+.nav-links a:hover{opacity:1}
+.theme-toggle{width:52px;height:52px;display:flex;justify-content:center;align-items:center;border-radius:50%;background:linear-gradient(45deg,var(--grad1),var(--grad2));color:#fff;font-size:20px;cursor:pointer;box-shadow:0 10px 22px rgba(0,0,0,.18);flex:0 0 auto}
+.hero{padding-top:110px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-inline:20px;position:relative}
+.hero-img{width:min(220px,58vw);height:min(220px,58vw);border-radius:50%;object-fit:cover;box-shadow:0 16px 40px rgba(0,0,0,.2);margin-bottom:26px;animation:float 3.4s ease-in-out infinite;border:6px solid rgba(255,255,255,.65)}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .hero h1,.section h2{background:linear-gradient(45deg,var(--grad1),var(--grad2));-webkit-background-clip:text;color:transparent}
-.hero h1{font-size:42px;font-weight:800}.hero p,.section p{margin-top:15px;font-size:18px;line-height:1.8;max-width:700px}
-.section{padding:80px 20px;max-width:900px;margin:auto;text-align:center}.section h2{font-size:38px;margin-bottom:30px}
-.skills-grid{display:grid;grid-template-columns:1fr;gap:25px;margin-top:30px}
-.skill-card{background:var(--card);padding:28px;border-radius:22px;box-shadow:0 12px 30px rgba(0,0,0,.08);transition:.3s}.skill-card:hover{transform:translateY(-8px)}
-.progress{width:100%;height:16px;background:#e9e9e9;border-radius:20px;overflow:hidden;margin-top:18px}.progress-fill{height:100%;background:linear-gradient(45deg,var(--grad1),var(--grad2));border-radius:20px}
-.contact-icons{display:flex;justify-content:center;gap:20px;margin-top:25px}.contact-icons a{width:55px;height:55px;display:flex;justify-content:center;align-items:center;border-radius:50%;background:linear-gradient(45deg,var(--grad1),var(--grad2));color:white;font-size:22px;text-decoration:none}
-.theme-panel{position:fixed;top:84px;right:18px;background:var(--card);border-radius:20px;padding:14px;box-shadow:0 15px 35px rgba(0,0,0,.18);display:none;z-index:1200;min-width:220px}.theme-panel.show{display:block}
-.theme-option{padding:12px 14px;border-radius:14px;cursor:pointer;font-weight:600;margin:6px 0;background:rgba(0,0,0,.04);color:var(--text)}
-@media(max-width:768px){.logo{font-size:26px}.nav-links a{font-size:14px}.hero h1{font-size:34px}.hero-img{width:180px;height:180px}.section h2{font-size:32px}}
+.hero h1{font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-.6px}
+.hero p,.section p{margin-top:14px;font-size:18px;line-height:1.8;max-width:740px;color:var(--muted)}
+.section{padding:86px 20px;max-width:1100px;margin:auto;text-align:center}
+.section h2{font-size:40px;margin-bottom:18px;letter-spacing:-.5px}
+.small-note{font-size:16px;color:var(--muted);max-width:760px;margin:0 auto 28px;line-height:1.8}
+.skills-grid,.game-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:28px}
+.skill-card,.game-card,.testimonial{background:var(--card);padding:26px;border-radius:24px;box-shadow:0 14px 34px rgba(0,0,0,.08);transition:.3s;border:1px solid rgba(255,255,255,.02)}
+.skill-card:hover,.game-card:hover{transform:translateY(-8px);box-shadow:0 22px 40px rgba(0,0,0,.12)}
+.skill-card h3,.game-card h3{font-size:24px;margin-bottom:10px}
+.skill-card p,.game-card p,.testimonial p{font-size:16px;line-height:1.75;color:var(--muted)}
+.progress{width:100%;height:16px;background:#e9e9e9;border-radius:20px;overflow:hidden;margin-top:18px}
+body.dark .progress{background:#2a2f3a}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--grad1),var(--grad2),var(--grad3));border-radius:20px;box-shadow:0 0 24px rgba(108,99,255,.3)}
+.game-icon{width:74px;height:74px;border-radius:22px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;background:linear-gradient(135deg,var(--grad1),var(--grad2));color:#fff;font-size:32px;box-shadow:0 12px 24px rgba(0,0,0,.16)}
+.open-btn{margin-top:16px;padding:12px 18px;border:none;border-radius:14px;background:linear-gradient(45deg,var(--grad1),var(--grad2));color:#fff;font-weight:700;cursor:pointer;width:100%;font-size:15px;box-shadow:0 10px 20px rgba(0,0,0,.12)}
+.open-btn:hover{filter:brightness(1.03)}
+.contact-box{background:var(--card);padding:24px;border-radius:24px;box-shadow:0 14px 34px rgba(0,0,0,.08);display:inline-block;margin-top:20px;font-size:24px;font-weight:800;letter-spacing:1px}
+.contact-icons{display:flex;justify-content:center;gap:20px;margin-top:26px;flex-wrap:wrap}
+.contact-icons a{width:58px;height:58px;display:flex;justify-content:center;align-items:center;border-radius:50%;background:linear-gradient(45deg,var(--grad1),var(--grad2));color:white;font-size:22px;text-decoration:none;box-shadow:0 10px 20px rgba(0,0,0,.12)}
+.theme-panel{position:fixed;top:84px;right:18px;background:var(--card);border-radius:20px;padding:14px;box-shadow:0 15px 35px rgba(0,0,0,.18);display:none;z-index:1200;min-width:220px;border:1px solid var(--line)}
+.theme-panel.show{display:block}
+.theme-option{padding:12px 14px;border-radius:14px;cursor:pointer;font-weight:700;margin:6px 0;background:rgba(0,0,0,.04);color:var(--text)}
+.theme-option:hover{filter:brightness(1.03)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:3000;padding:18px}
+.modal.show{display:flex}
+.modal-card{width:min(520px,100%);background:var(--card);color:var(--text);border-radius:28px;box-shadow:0 24px 70px rgba(0,0,0,.35);border:1px solid var(--line);overflow:hidden}
+.modal-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.modal-title{font-size:20px;font-weight:800}
+.close-x{border:none;background:transparent;color:var(--text);font-size:22px;cursor:pointer}
+.modal-body{padding:20px}
+.game-mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.mode-btn{padding:14px 12px;border:none;border-radius:16px;background:linear-gradient(45deg,var(--grad1),var(--grad2));color:#fff;font-weight:800;cursor:pointer;box-shadow:0 10px 20px rgba(0,0,0,.12)}
+.mode-btn.secondary{background:linear-gradient(45deg,#ff7b00,#ff3cac)}
+.status{margin-top:14px;font-size:16px;color:var(--muted);font-weight:600}
+.score-row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:16px}
+.score-pill{flex:1;min-width:120px;padding:12px 14px;border-radius:16px;background:rgba(0,0,0,.04);font-weight:800}
+.game-stage{margin-top:16px}
+.choice-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.choice-card{border:none;border-radius:20px;padding:18px 10px;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.06));color:var(--text);cursor:pointer;transition:.2s;min-height:122px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.choice-card:hover{transform:translateY(-4px)}
+.choice-icon{font-size:42px;line-height:1;color:var(--text)}
+.choice-label{font-size:15px;font-weight:800}
+.rps-vs{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px}
+.vs-box{flex:1;padding:16px;border-radius:20px;background:rgba(0,0,0,.04);min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.vs-title{font-size:13px;font-weight:800;letter-spacing:1px;color:var(--muted);margin-bottom:10px}
+.vs-emoji{font-size:54px;line-height:1}
+.result-banner{margin-top:16px;padding:14px 16px;border-radius:18px;background:linear-gradient(45deg,var(--grad1),var(--grad2));color:#fff;font-weight:800;font-size:18px;box-shadow:0 10px 24px rgba(0,0,0,.16)}
+.xo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.xo-cell{aspect-ratio:1;border:none;border-radius:20px;font-size:40px;font-weight:900;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.06));color:var(--text);cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
+.xo-cell.win{background:linear-gradient(45deg,var(--grad1),var(--grad2));color:#fff}
+.timer-wrap{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.timer-pill{padding:10px 14px;border-radius:16px;background:rgba(0,0,0,.04);font-weight:800}
+.tap-btn{width:min(100%,260px);margin-top:16px;padding:18px 22px;border:none;border-radius:18px;background:linear-gradient(45deg,var(--grad1),var(--grad2));color:#fff;font-weight:900;font-size:20px;cursor:pointer;box-shadow:0 14px 28px rgba(0,0,0,.18)}
+.tap-btn:active{transform:scale(.98)}
+.replay-btn{margin-top:14px;padding:12px 16px;border:none;border-radius:14px;background:linear-gradient(45deg,#ff7b00,#ff3cac);color:#fff;font-weight:800;cursor:pointer}
+@media(max-width:980px){.skills-grid,.game-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){
+  nav{padding:12px 14px}
+  .logo{font-size:26px}
+  .nav-links a{font-size:14px}
+  .hero{padding-top:100px}
+  .hero h1{font-size:34px}
+  .hero-img{width:178px;height:178px}
+  .section{padding:72px 16px}
+  .section h2{font-size:32px}
+  .skills-grid,.game-grid{grid-template-columns:1fr}
+  .choice-row,.game-mode-grid{grid-template-columns:1fr}
+  .rps-vs{flex-direction:column}
+}
 </style>
 </head>
 <body>
-<div id="particles-js"></div>
-<nav>
-<div class="logo">Shashank</div>
-<div class="nav-links">
-<a href="#about">About</a>
-<a href="#skills">Skills</a>
-<div class="theme-toggle" id="theme-toggle"><i class="fas fa-palette"></i></div>
-</div>
-</nav>
-<div class="theme-panel" id="theme-panel">
-<div class="theme-option" data-theme="light">☀️ White Theme</div>
-<div class="theme-option" data-theme="dark">🌙 Dark Theme</div>
-<div class="theme-option" data-theme="ocean">🌊 Ocean Blue</div>
-<div class="theme-option" data-theme="sunset">🔥 Sunset Neon</div>
-</div>
-<section class="hero">
-<img src="a26f022f95423ba4f4cfcd68b9a5c489 (1).jpg" class="hero-img">
-<h1>Hello I'm Shashank</h1>
-<p>Creative student, future developer and digital creator focused on building modern websites, premium UI designs and smooth experiences.</p>
-</section>
-<section class="section" id="about">
-<h2>About Me</h2>
-<p>I am Shashank, a passionate student and future-focused developer who loves creating premium websites, smooth animations and powerful user experiences. I enjoy learning modern design systems, better UI layouts, and building websites that feel luxurious on every phone screen.</p>
-</section>
-<section class="section" id="skills">
-<h2>My Skills</h2>
-<div class="skills-grid">
-<div class="skill-card"><h3>Web Development</h3><p>Responsive websites with premium animations.</p><div class="progress"><div class="progress-fill" style="width:95%"></div></div></div>
-<div class="skill-card"><h3>Creative Design</h3><p>Modern UI, smooth visuals and premium layouts.</p><div class="progress"><div class="progress-fill" style="width:90%"></div></div></div>
-<div class="skill-card"><h3>Future Vision</h3><p>Focused on growth, mastery and innovation.</p><div class="progress"><div class="progress-fill" style="width:85%"></div></div></div>
-</div>
-</section>
-<section class="section">
-<h2>Contact</h2>
-<div class="contact-icons">
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-github"></i></a>
-<a href="#"><i class="fab fa-linkedin"></i></a>
-</div>
-</section>
-<script>
-particlesJS('particles-js',{particles:{number:{value:55},size:{value:3},move:{speed:2},line_linked:{enable:true,color:'#00bfa6'},color:{value:'#00bfa6'}}});
-const themes={light:{bg:'#ffffff',text:'#222',card:'#ffffff',nav:'rgba(255,255,255,0.9)',g1:'#00bfa6',g2:'#6c63ff'},dark:{bg:'#111111',text:'#f2f2f2',card:'#1b1b1b',nav:'rgba(20,20,20,0.9)',g1:'#00d4ff',g2:'#7b61ff'},ocean:{bg:'#eaf7ff',text:'#123',card:'#ffffff',nav:'rgba(234,247,255,0.92)',g1:'#0099ff',g2:'#00c2a8'},sunset:{bg:'#1a1024',text:'#fff4e6',card:'#241430',nav:'rgba(36,20,48,0.92)',g1:'#ff7b00',g2:'#ff3cac'}};
-function applyTheme(name){const t=themes[name];document.documentElement.style.setProperty('--bg',t.bg);document.documentElement.style.setProperty('--text',t.text);document.documentElement.style.setProperty('--card',t.card);document.documentElement.style.setProperty('--nav',t.nav);document.documentElement.style.setProperty('--grad1',t.g1);document.documentElement.style.setProperty('--grad2',t.g2);}
-const toggle=document.getElementById('theme-toggle');const panel=document.getElementById('theme-panel');
-toggle.addEventListener('click',()=>panel.classList.toggle('show'));
-document.querySelectorAll('.theme-option').forEach(opt=>opt.addEventListener('click',()=>{applyTheme(opt.dataset.theme);panel.classList.remove('show');}));
-document.addEventListener('click',e=>{if(!panel.contains(e.target)&&!toggle.contains(e.target))panel.classList.remove('show');});
-</script>
-</body>
+<div id="particles-js"></div><nav>
+  <div class="logo">Shashank</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#games">Games</a>
+    <a href="#contact">Contact</a>
+    <div class="theme-toggle" id="theme-toggle"><i class="fas fa-palette"></i></div>
+  </div>
+</nav><div class="theme-panel" id="theme-panel">
+  <div class="theme-option" data-theme="light">☀️ White Theme</div>
+  <div class="theme-option" data-theme="dark">🌙 Dark Theme</div>
+  <div class="theme-option" data-theme="ocean">🌊 Ocean Blue</div>
+  <div class="theme-option" data-theme="sunset">🔥 Sunset Neon</div>
+</div><section class="hero">
+  <img src="a26f022f95423ba4f4cfcd68b9a5c489 (1).jpg" class="hero-img" alt="Shashank portrait">
+  <h1>Hello I'm Shashank</h1>
+  <p>Creative student, future developer and digital creator focused on building modern websites, premium UI designs and smooth experiences.</p>
+</section><section class="section" id="about">
+  <h2>About Me</h2>
+  <p>I am Shashank, a passionate student and future-focused developer who loves creating premium websites, smooth animations and powerful user experiences. I enjoy learning modern design systems, better UI layouts, and building websites that feel luxurious on every phone screen. My focus is to make things look sharp, feel alive and work beautifully. I want my work to feel polished, premium and memorable from the very first second a person opens it.</p>
+</section><section class="section" id="skills">
+  <h2>My Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card"><h3>Web Development</h3><p>Responsive websites with premium animations.</p><div class="progress"><div class="progress-fill" style="width:95%"></div></div></div>
+    <div class="skill-card"><h3>Creative Design</h3><p>Modern UI, smooth visuals and premium layouts.</p><div class="progress"><div class="progress-fill" style="width:90%"></div></div></div>
+    <div class="skill-card"><h3>Future Vision</h3><p>Focused on growth, mastery and innovation.</p><div class="progress"><div class="progress-fill" style="width:85%"></div></div></div>
+  </div>
+</section><section class="section" id="games">
+  <h2>Game Hub</h2>
+  <p class="small-note">Three app-style mini games with premium visuals and open buttons. Each game opens in its own polished panel.</p>
+  <div class="game-grid">
+    <div class="game-card">
+      <div class="game-icon"><i class="fa-solid fa-hand-fist"></i></div>
+      <h3>Rock Paper Scissors</h3>
+      <p>Choose your hand move and challenge a smart AI or a local second player.</p>
+      <button class="open-btn" onclick="openRPS()">Open App</button>
+    </div>
+    <div class="game-card">
+      <div class="game-icon"><i class="fa-solid fa-o"></i></div>
+      <h3>Tic Tac Toe</h3>
+      <p>Neon XO board with AI mode and 2 player mode for a clean pro game feel.</p>
+      <button class="open-btn" onclick="openXO()">Open App</button>
+    </div>
+    <div class="game-card">
+      <div class="game-icon"><i class="fa-solid fa-bolt"></i></div>
+      <h3>Speed Tap</h3>
+      <p>Tap as fast as possible before time runs out and beat your high score.</p>
+      <button class="open-btn" onclick="openTap()">Open App</button>
+    </div>
+  </div>
+</section><section class="section" id="contact">
+  <h2>Contact</h2>
+  <div class="contact-box">9411597392</div>
+</section><div class="modal" id="gameModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle">Game</div>
+      <button class="close-x" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div><script>
+particlesJS('particles-js',{
+  particles:{
+    number:{value:55},
+    size:{value:3},
+    move:{speed:2},
+    line_linked:{enable:true,color:'#00bfa6'},
+    color:{value:'#00bfa6'}
+  }
+});
+
+const themes={
+  light:{bg:'#ffffff',text:'#1f1f1f',card:'#ffffff',nav:'rgba(255,255,255,0.92)',muted:'#6d7280',line:'#eef0f4',g1:'#00bfa6',g2:'#6c63ff',g3:'#ff6aa2'},
+  dark:{bg:'#0f1115',text:'#f5f7fb',card:'#171a22',nav:'rgba(15,17,21,0.92)',muted:'#a8b0c2',line:'#232734',g1:'#00d4ff',g2:'#7b61ff',g3:'#ff6aa2'},
+  ocean:{bg:'#eaf7ff',text:'#123',card:'#ffffff',nav:'rgba(234,247,255,0.92)',muted:'#356',line:'#dceef8',g1:'#0099ff',g2:'#00c2a8',g3:'#6c63ff'},
+  sunset:{bg:'#1a1024',text:'#fff4e6',card:'#241430',nav:'rgba(36,20,48,0.92)',muted:'#e7c9b0',line:'#3a214b',g1:'#ff7b00',g2:'#ff3cac',g3:'#7b61ff'}
+};
+function applyTheme(name){
+  const t=themes[name];
+  document.documentElement.style.setProperty('--bg',t.bg);
+  document.documentElement.style.setProperty('--text',t.text);
+  document.documentElement.style.setProperty('--card',t.card);
+  document.documentElement.style.setProperty('--nav',t.nav);
+  document.documentElement.style.setProperty('--muted',t.muted);
+  document.documentElement.style.setProperty('--line',t.line);
+  document.documentElement.style.setProperty('--grad1',t.g1);
+  document.documentElement.style.setProperty('--grad2',t.g2);
+  document.documentElement.style.setProperty('--grad3',t.g3);
+  document.body.classList.toggle('dark', name==='dark' || name==='sunset');
+}
+
+const themeToggle=document.getElementById('theme-toggle');
+const themePanel=document.getElementById('theme-panel');
+themeToggle.addEventListener('click',()=>themePanel.classList.toggle('show'));
+document.querySelectorAll('.theme-option').forEach(opt=>{
+  opt.addEventListener('click',()=>{applyTheme(opt.dataset.theme);themePanel.classList.remove('show');});
+});
+document.addEventListener('click',(e)=>{if(!themePanel.contains(e.target)&&!themeToggle.contains(e.target)) themePanel.classList.remove('show');});
+
+const modal=document.getElementById('gameModal');
+const modalTitle=document.getElementById('modalTitle');
+const modalBody=document.getElementById('modalBody');
+function closeModal(){modal.classList.remove('show');modalBody.innerHTML='';}
+
+// ---------- Rock Paper Scissors ----------
+let rpsMode='ai';
+let rpsTurn='P1';
+let rpsP1=null;
+let rpsScore={p1:0,p2:0,ai:0,draw:0,rounds:0};
+const rpsIcons={Rock:'fa-hand-fist',Paper:'fa-hand',Scissors:'fa-hand-peace'};
+function openRPS(){
+  modalTitle.textContent='Rock Paper Scissors Deluxe';
+  modal.classList.add('show');
+  rpsScore={p1:0,p2:0,ai:0,draw:0,rounds:0};
+  modalBody.innerHTML=`
+    <div class="status">Choose mode to begin the battle.</div>
+    <div class="game-mode-grid">
+      <button class="mode-btn" onclick="startRPS('ai')">Play vs AI</button>
+      <button class="mode-btn secondary" onclick="startRPS('2p')">2 Player</button>
+    </div>
+    <div id="rpsRoot"></div>
+  `;
+}
+function startRPS(mode){
+  rpsMode=mode;
+  rpsTurn='P1';
+  rpsP1=null;
+  renderRPS();
+}
+function renderRPS(message='Pick a move'){
+  const root=document.getElementById('rpsRoot');
+  const is2P=rpsMode==='2p';
+  const leftName=is2P?'Player 1':'You';
+  const rightName=is2P?'Player 2':'AI';
+  root.innerHTML=`
+    <div class="score-row">
+      <div class="score-pill">${leftName}: ${is2P?rpsScore.p1:rpsScore.p1}</div>
+      <div class="score-pill">Draws: ${rpsScore.draw}</div>
+      <div class="score-pill">${rightName}: ${is2P?rpsScore.p2:rpsScore.ai}</div>
+    </div>
+    <div class="status">${message}</div>
+    <div class="game-stage">
+      <div class="choice-row">
+        ${['Rock','Paper','Scissors'].map(move=>`
+          <button class="choice-card" onclick="pickRPS('${move}')">
+            <i class="fa-solid ${rpsIcons[move]} choice-icon"></i>
+            <div class="choice-label">${move}</div>
+          </button>
+        `).join('')}
+      </div>
+      <div class="rps-vs">
+        <div class="vs-box">
+          <div class="vs-title">${leftName}</div>
+          <div class="vs-emoji" id="rpsLeft">?</div>
+        </div>
+        <div class="vs-box" style="max-width:88px;flex:0 0 88px"><div class="vs-title">VS</div><div class="vs-emoji">⚔️</div></div>
+        <div class="vs-box">
+          <div class="vs-title">${rightName}</div>
+          <div class="vs-emoji" id="rpsRight">?</div>
+        </div>
+      </div>
+      <div class="result-banner" id="rpsBanner">Battle Ready</div>
+      <button class="replay-btn" onclick="openRPS()">Reset Game</button>
+    </div>
+  `;
+}
+function compareMoves(a,b){
+  if(a===b) return 0;
+  const win={Rock:'Scissors',Paper:'Rock',Scissors:'Paper'};
+  return win[a]===b ? 1 : -1;
+}
+function resultText(winner, leftName, rightName){
+  if(winner===0) return 'Draw! Equal power.';
+  return winner===1 ? `${leftName} wins the round!` : `${rightName} wins the round!`;
+}
+function pickRPS(move){
+  const leftName=rpsMode==='2p'?'Player 1':'You';
+  const rightName=rpsMode==='2p'?'Player 2':'AI';
+  const leftEl=document.getElementById('rpsLeft');
+  const rightEl=document.getElementById('rpsRight');
+  const banner=document.getElementById('rpsBanner');
+  if(rpsMode==='ai'){
+    const aiMove=['Rock','Paper','Scissors'][Math.floor(Math.random()*3)];
+    leftEl.innerHTML=`<i class="fa-solid ${rpsIcons[move]}"></i><div style="font-size:15px;font-weight:800;margin-top:8px">${move}</div>`;
+    rightEl.innerHTML=`<i class="fa-solid ${rpsIcons[aiMove]}"></i><div style="font-size:15px;font-weight:800;margin-top:8px">${aiMove}</div>`;
+    const winner=compareMoves(move, aiMove);
+    if(winner===1) rpsScore.p1++; else if(winner===-1) rpsScore.ai++; else rpsScore.draw++;
+    rpsScore.rounds++;
+    banner.textContent=resultText(winner, leftName, rightName);
+    return;
+  }
+  if(!rpsP1){
+    rpsP1=move;
+    banner.textContent='Player 2, now choose your move.';
+    leftEl.innerHTML=`<i class="fa-solid ${rpsIcons[move]}"></i><div style="font-size:15px;font-weight:800;margin-top:8px">${move}</div>`;
+    rightEl.textContent='?';
+    return;
+  }
+  const p2=move;
+  leftEl.innerHTML=`<i class="fa-solid ${rpsIcons[rpsP1]}"></i><div style="font-size:15px;font-weight:800;margin-top:8px">${rpsP1}</div>`;
+  rightEl.innerHTML=`<i class="fa-solid ${rpsIcons[p2]}"></i><div style="font-size:15px;font-weight:800;margin-top:8px">${p2}</div>`;
+  const winner=compareMoves(rpsP1,p2);
+  if(winner===1) rpsScore.p1++; else if(winner===-1) rpsScore.p2++; else rpsScore.draw++;
+  rpsScore.rounds++;
+  banner.textContent=resultText(winner, 'Player 1', 'Player 2');
+  rpsP1=null;
+}
+
+// ---------- XO ----------
+let xoMode='ai';
+let xoBoard=Array(9).fill('');
+let xoTurn='X';
+let xoLocked=false;
+let xoScore={x:0,o:0,draw:0};
+function openXO(){
+  modalTitle.textContent='Tic Tac Toe Neon';
+  modal.classList.add('show');
+  xoBoard=Array(9).fill('');
+  xoTurn='X';
+  xoLocked=false;
+  modalBody.innerHTML=`
+    <div class="status">Choose mode to start the XO battle.</div>
+    <div class="game-mode-grid">
+      <button class="mode-btn" onclick="startXO('ai')">Play vs AI</button>
+      <button class="mode-btn secondary" onclick="startXO('2p')">2 Player</button>
+    </div>
+    <div id="xoRoot"></div>
+  `;
+}
+function startXO(mode){
+  xoMode=mode;
+  xoBoard=Array(9).fill('');
+  xoTurn='X';
+  xoLocked=false;
+  renderXO('X begins');
+}
+function renderXO(message='X begins'){
+  const root=document.getElementById('xoRoot');
+  const statusText = xoMode==='2p' ? `Turn: ${xoTurn}` : `Your turn: ${xoTurn}`;
+  root.innerHTML=`
+    <div class="score-row">
+      <div class="score-pill">X: ${xoScore.x}</div>
+      <div class="score-pill">Draws: ${xoScore.draw}</div>
+      <div class="score-pill">O: ${xoScore.o}</div>
+    </div>
+    <div class="status">${statusText} • ${message}</div>
+    <div class="xo-grid" id="xoGrid">
+      ${xoBoard.map((v,i)=>`<button class="xo-cell" onclick="xoMove(${i})">${v}</button>`).join('')}
+    </div>
+    <button class="replay-btn" onclick="openXO()">Reset Game</button>
+  `;
+}
+function xoWinLine(board){
+  const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  for(const [a,b,c] of wins){
+    if(board[a] && board[a]===board[b] && board[a]===board[c]) return [a,b,c,board[a]];
+  }
+  return null;
+}
+function endXO(message, line=[]){
+  xoLocked=true;
+  const cells=document.querySelectorAll('.xo-cell');
+  line.slice(0,3).forEach(i=>cells[i]?.classList.add('win'));
+  document.querySelector('#xoRoot .status').textContent=message;
+}
+function xoMove(index){
+  if(xoLocked || xoBoard[index]) return;
+  xoBoard[index]=xoTurn;
+  const result=xoWinLine(xoBoard);
+  if(result){
+    if(result[3]==='X') xoScore.x++; else xoScore.o++;
+    renderXO('Round complete');
+    endXO(`${result[3]} wins the match!`, result);
+    return;
+  }
+  if(!xoBoard.includes('')){
+    xoScore.draw++;
+    renderXO('Board full');
+    endXO('Draw! Nobody won this round.');
+    return;
+  }
+  xoTurn = xoTurn==='X' ? 'O' : 'X';
+  renderXO(xoMode==='2p' ? 'Turn changed' : 'AI thinking...');
+  if(xoMode==='ai' && xoTurn==='O'){
+    setTimeout(()=>{
+      const free=xoBoard.map((v,i)=>v===''?i:null).filter(v=>v!==null);
+      const aiPick=free[Math.floor(Math.random()*free.length)];
+      if(aiPick===undefined || xoLocked) return;
+      xoBoard[aiPick]='O';
+      const result2=xoWinLine(xoBoard);
+      if(result2){
+        xoScore.o++;
+        renderXO('Round complete');
+        endXO('AI wins this round!', result2);
+        return;
+      }
+      if(!xoBoard.includes('')){
+        xoScore.draw++;
+        renderXO('Board full');
+        endXO('Draw! Nobody won this round.');
+        return;
+      }
+      xoTurn='X';
+      renderXO('Your move');
+    }, 420);
+  }
+}
+
+// ---------- Speed Tap ----------
+let tapScore=0;
+let tapTime=5;
+let tapTimer=null;
+let tapActive=false;
+let bestTap=Number(localStorage.getItem('shashankTapBest')||0);
+function openTap(){
+  modalTitle.textContent='Speed Tap Reflex Rush';
+  modal.classList.add('show');
+  tapScore=0;
+  tapTime=5;
+  tapActive=false;
+  modalBody.innerHTML=`
+    <div class="status">Tap as fast as you can in 5 seconds.</div>
+    <div class="timer-wrap">
+      <div class="timer-pill">Time: <span id="tapTime">5</span>s</div>
+      <div class="timer-pill">Score: <span id="tapScore">0</span></div>
+      <div class="timer-pill">Best: <span id="tapBest">${bestTap}</span></div>
+    </div>
+    <button class="tap-btn" id="tapButton" onclick="tapHit()">TAP NOW</button>
+    <div class="result-banner" id="tapBanner">Press start to begin.</div>
+    <button class="mode-btn" style="margin-top:14px" onclick="startTap()">Start Run</button>
+    <button class="replay-btn" onclick="openTap()">Reset Game</button>
+  `;
+}
+function startTap(){
+  tapScore=0;
+  tapTime=5;
+  tapActive=true;
+  document.getElementById('tapScore').textContent=0;
+  document.getElementById('tapTime').textContent=5;
+  document.getElementById('tapBanner').textContent='Go! Tap as much as possible.';
+  document.getElementById('tapButton').disabled=false;
+  clearInterval(tapTimer);
+  tapTimer=setInterval(()=>{
+    tapTime--;
+    const el=document.getElementById('tapTime');
+    if(el) el.textContent=tapTime;
+    if(tapTime<=0){
+      clearInterval(tapTimer);
+      tapActive=false;
+      document.getElementById('tapButton').disabled=true;
+      if(tapScore>bestTap){
+        bestTap=tapScore;
+        localStorage.setItem('shashankTapBest', String(bestTap));
+      }
+      document.getElementById('tapBest').textContent=bestTap;
+      document.getElementById('tapBanner').textContent=`Time's up! Final score: ${tapScore}`;
+    }
+  },1000);
+}
+function tapHit(){
+  if(!tapActive) return;
+  tapScore++;
+  document.getElementById('tapScore').textContent=tapScore;
+}
+
+</script></body>
 </html>
